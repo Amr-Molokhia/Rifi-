@@ -1,0 +1,65 @@
+import React, { useState } from 'react'
+import {    useGetSalesGoodQuery } from '../../generated/graphql'
+import {TableRow ,TablePagination,TableCell,TableBody} from '@mui/material';
+import CustomizeTable from '../UI/CustomizedTable';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Link } from 'react-router-dom';
+import AddButton from '../UI/AddButton'
+
+export default function SalesGoodList() {
+    const [page,setPage]=useState(0)
+    const [rowsPerPage,setRowsPerPage]=useState(5)
+    const handleChangePage=(e :any,newpage :number)=>{
+        setPage(newpage)
+    }
+    const handleChangeRowsPerPage = (e:any) =>{
+        setRowsPerPage(e.target.value)
+        setPage(0)
+    }
+    const { data: SalesGood, isSuccess: isAccessSucess } = useGetSalesGoodQuery({ take: rowsPerPage, skip: page*rowsPerPage })
+    return (
+<>
+        <CustomizeTable tableHead={['ID','Employer Name','mobile','phone','salary system','salary value']}>
+            <TableBody>
+                {SalesGood?.aSalesGood?.items?.map((item,idx) => (
+                    <TableRow
+                        key={idx}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                        <TableCell component="th" scope="row">
+                            {item?.id}
+                        </TableCell>
+                        <TableCell align="right">{item?.id}</TableCell>
+                        <TableCell align="right">{item?.customerName}</TableCell>
+                        <TableCell align="right">{item?.discount}</TableCell>
+                        <TableCell align="right">{item?.total}</TableCell>
+                        <TableCell align="right">{item?.totalAmount}</TableCell>
+                        <TableCell align="right">{item?.salGsubs}</TableCell>
+                        <TableCell align="right">{item?.saleDate}</TableCell>
+                        <TableCell>
+                                <Link to={`/SalesGood/update/${item?.id}`}>
+                                    <EditIcon ></EditIcon>
+                                </Link>
+                                <DeleteIcon color='error' ></DeleteIcon>
+                            </TableCell>  
+                    </TableRow>
+                ))}
+            </TableBody>
+        </CustomizeTable>
+        <TablePagination
+        rowsPerPageOptions={[5, 10, 15]}
+        component="div"
+        count={SalesGood?.aSalesGood?.totalCount!}
+        page={page}
+        onPageChange={handleChangePage}
+        rowsPerPage={rowsPerPage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+    />
+    <Link to='/SalesGood/add'>
+                    <AddButton variant='contained' >
+                    </AddButton>
+                </Link>
+    </>
+    )
+}

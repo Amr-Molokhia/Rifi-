@@ -1,0 +1,26 @@
+query getBank($take:Int,$skip:Int){
+ aBank(take:$take,skip:$skip){
+   
+    totalCount
+   items{...BankFragment}
+  }
+}
+  
+mutation creatBank($input:BankInput ){
+  addBank(bank:$input){...BankFragment}
+}
+
+mutation updatBank($input:BankInput){
+  updateBank(bank:$input){...BankFragment}
+}
+
+mutation deleteBank($input:Long!){
+  deleteBank( id:$input){...BankFragment}
+}
+query getBankById($id :Int!){
+  aBank(where : {id :{eq:$id}})
+    {
+  items{...BankFragment}
+      
+  }
+}

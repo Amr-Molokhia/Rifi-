@@ -1,0 +1,26 @@
+query getReturnCustomer($take:Int,$skip:Int){
+ aReturnCust(take:$take,skip:$skip){
+    totalCount
+   items{...ReturnCustomerFragment}
+  }
+}
+
+mutation creatReturnCust($input:ReturnCustInput){
+  addReturnCust(returnCust:$input){...ReturnCustomerFragment}
+}
+
+mutation updatReturnCust($input:ReturnCustInput){
+  updateReturnCust(returnCust:$input){...ReturnCustomerFragment}
+}
+
+mutation deleteReturnCust($input:Long!){
+  deleteReturnCust( id:$input){...ReturnCustomerFragment}
+}
+
+query getReturnCustomerById($id :Long!){
+  aReturnCust(where : {id :{eq:$id}})
+    {
+  items{...ReturnCustomerFragment}
+      
+  }
+}

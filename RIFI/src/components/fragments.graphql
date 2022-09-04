@@ -1,0 +1,236 @@
+  fragment fragmentClass on AccClass{
+    id
+    description
+    type
+    
+  }
+    fragment EmployerFragment on Employee {
+    id
+     name
+     address
+     phone
+     mobile
+      salarySystem
+     salaryValue
+    attendances{...AttendanceFragment}
+  }
+ 
+
+   fragment AttendanceFragment on Attendance {
+     id
+     dcheck
+     date
+     employeeNavigation{name}
+
+     
+  }
+
+   fragment BankFragment on Bank {
+     id
+     name
+     account 
+   }
+  fragment CashFragment on CashRec {
+      id
+     docClass
+     amount
+     docDate
+     supplierName
+     payType
+     checkno
+     checkDate
+     bankName
+     bankAccount
+     reciveNo
+  }
+
+  fragment CustomerFragment on Customer {
+      id
+      name
+     address
+     mobile
+     phone
+     note
+     contacts{...ContactsFragment}
+  }
+  
+  fragment ContactsFragment on Contact{
+     id
+     name
+     mobile
+     mobile2
+    }
+     fragment SupplierFragment on Supplier {
+      id
+      name
+     address
+     mobile
+     phone
+     note
+     contacts{...ContactsFragment}
+  }
+
+  fragment ProductClassFragment on ProdClass{
+   id
+   description
+   products{...ProductFragment}
+}
+
+fragment ProductFragment on Product{
+   id
+   description
+   classification
+   classificationNavigation{
+   id
+   description
+   }
+}
+
+fragment ReceptFragment on Receipt{
+   id
+   docClass
+   amount
+   docDate
+   customerName
+   payType
+   checkno
+   checkDate
+   checkBank
+   bankName
+   bankAccount
+   saleNo
+   
+}
+fragment RecGoodFragment on RecGood{
+   id
+   supplierName
+   invoiceNo
+   recivingData
+   totalAmount
+   discount
+   total
+   recGsubs{...recGsubsFragment}
+   
+}
+
+fragment recGsubsFragment on RecGsub{
+   id
+   store
+   product
+   produnit
+   quantity
+   qafterDiscount
+   unitPrice
+   totalPrice
+   recGlnk
+   productNavigation{...ProductFragment}
+   
+   storeNavigation{...StoreFragment}
+}
+
+fragment StoreFragment on Store{
+   id
+   description
+   location
+}
+
+fragment ReturnCustomerFragment on ReturnCust{
+   id
+    customerName
+   retDate
+   totalAmount
+   retCsubs{...retCsubsFragmement}
+   
+}
+
+fragment retCsubsFragmement on RetCsub{
+   id
+   store
+   quntity
+   unitPrice
+   totalPrice
+   retAccTypr
+   retClnk
+   product
+   produnit
+   productNavigation{...ProductFragment}
+
+   storeNavigation{...StoreFragment}
+}
+
+
+fragment ReturnSupportFragment on  ReturnSupp{
+   id
+   supplierName
+   retDate
+   totalAmount
+   retSsubs{...retSsubsFragment}
+   
+    
+   
+}
+
+fragment retSsubsFragment on RetSsub{
+   id
+   store
+   product
+   produnit
+   quntity
+   unitPrice
+   totalPrice
+   retAccTypr
+   retSlnk
+   productNavigation{...ProductFragment}
+   
+   storeNavigation{...StoreFragment}
+   
+}
+
+
+fragment SalesGoodFragment on  SalesGood{
+   id
+   customerName
+   saleDate
+   totalAmount
+   discount
+   total
+   salGsubs{... salGsubsFragment}
+  }
+
+fragment salGsubsFragment on SalGsub{
+   id
+   store
+   product
+   quntity
+   unitPrice
+   totalPrice
+   
+   unit
+   qdisc
+   salGlnk
+   productNavigation{...ProductFragment}
+   
+   storeNavigation{...StoreFragment}
+}
+fragment RightFragment on  Uright{
+   id
+   username
+   password
+   s01
+   s02
+   s03
+   s04
+   s05
+   s06
+   
+  }
+
+fragment WeaklyReapateFragment on  WeeklyRepate{
+   id
+   date
+   rebate
+   employee
+  }
+
+
+ 

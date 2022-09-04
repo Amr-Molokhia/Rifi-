@@ -1,0 +1,26 @@
+query getClass($take:Int,$skip:Int){
+  accClass( take:$take,skip:$skip){
+    totalCount
+    items{
+      ...fragmentClass
+    }
+  }
+}
+mutation creatAccClass($input:AccClassInput ){
+ addAccClass(accClass:$input){...fragmentClass}
+}
+
+mutation updatAccClass($input:AccClassInput){
+  updateAccClass(accClass:$input){...fragmentClass}
+}
+
+mutation deleteAccClass($input:Long!){
+  deleteAccClass( id:$input){...fragmentClass}
+}
+query getAccClassById($id :Long){
+  accClass(where : {id :{eq:$id}})
+    {
+  items{...fragmentClass}
+      
+  }
+}

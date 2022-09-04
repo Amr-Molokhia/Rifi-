@@ -1,0 +1,25 @@
+query getAttendance($take:Int,$skip:Int){
+ aAttendance(take:$take,skip:$skip){
+   
+   totalCount
+   items{...AttendanceFragment}
+  }
+}
+mutation creatAttendance($input:AttendanceInput ){
+  addAttendance(attendance:$input){...AttendanceFragment}
+}
+
+mutation updatAttendance($input:AttendanceInput){
+  updateAttendance(attendance:$input){...AttendanceFragment}
+}
+
+mutation deleteAttendance($input:Long!){
+  deleteAttendance( id:$input){...AttendanceFragment}
+}
+query getAttendanceById($id :Long){
+  aAttendance(where : {id :{eq:$id}})
+    {
+  items{...AttendanceFragment}
+      
+  }
+}

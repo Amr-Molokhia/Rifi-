@@ -1,0 +1,25 @@
+query getRight($take:Int,$skip:Int){
+ uright(take:$take,skip:$skip){
+    totalCount
+   items{...RightFragment}
+  }
+}
+
+mutation creatRight($input:UrightInput ){
+  addUright(uright:$input){...RightFragment}
+}
+
+mutation updatRight($input:UrightInput){
+  updateUright(uright:$input){...RightFragment}
+}
+
+mutation deleteRight($input:Long!){
+  deleteUright( id:$input){...RightFragment}
+}
+query getUrightById($id :Int!){
+  uright(where : {id :{eq:$id}})
+    {
+  items{...RightFragment}
+      
+  }
+}

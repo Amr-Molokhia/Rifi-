@@ -1,0 +1,25 @@
+query getSalesGood($take:Int,$skip:Int){
+ aSalesGood(take:$take,skip:$skip){
+    totalCount
+   items{...SalesGoodFragment}
+  }
+}
+mutation creatSalesGood($input:SalesGoodInput){
+  addDelivery(salesGood:$input){...SalesGoodFragment}
+}
+
+mutation updateSalesGood($input:SalesGoodInput){
+  updateDelivery(salesGood:$input){...SalesGoodFragment}
+}
+
+mutation deleteSalesGood($input:Long!){
+  deleteDelivery( id:$input){...SalesGoodFragment}
+}
+
+query getSalesGoodById($id :Long!){
+  aSalesGood(where : {id :{eq:$id}})
+    {
+  items{...SalesGoodFragment}
+      
+  }
+}

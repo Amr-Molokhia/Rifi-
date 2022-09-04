@@ -1,0 +1,26 @@
+query getEmployers($take:Int,$skip:Int){
+  aEmployee(take:$take,skip:$skip){
+    totalCount
+    items{...EmployerFragment}
+  }
+}
+
+mutation creatEmployer($input:EmployeeInput ){
+  addEmployee(employee:$input){...EmployerFragment}
+}
+
+mutation updatEmployer($input:EmployeeInput){
+  updateEmployee(employee:$input){...EmployerFragment}
+}
+
+mutation deleteEmployer($input:Long!){
+  deleteEmployee( id:$input){...EmployerFragment}
+}
+query getEmployerById($id :Long!){
+  aEmployee(where : {id :{eq:$id}})
+    {
+  items{...EmployerFragment}
+      
+  }
+}
+

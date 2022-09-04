@@ -1,0 +1,26 @@
+query getProduct($take:Int,$skip:Int){
+  aProduct(take:$take,skip:$skip){
+    totalCount
+   items{...ProductFragment}
+  }
+}
+mutation creatProduct($input:ProductInput ){
+  addProduct(product:$input){...ProductFragment}
+}
+
+mutation updatProduct($input:ProductInput){
+  updateProduct(product:$input){...ProductFragment}
+}
+
+mutation deleteProduct($input:Long!){
+  deleteProduct( id:$input){...ProductFragment}
+}
+
+query getProductById($id :Long){
+  aProduct(where : {id :{eq:$id}})
+    {
+  items{...ProductFragment}
+      
+  }
+}
+

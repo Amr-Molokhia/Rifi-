@@ -1,0 +1,25 @@
+query getWeaklyReapate($take:Int,$skip:Int){
+ aWeeklyRepate(take:$take,skip:$skip){
+    totalCount
+   items{...WeaklyReapateFragment}
+  }
+}
+
+mutation creatWeaklyReapate($input:WeeklyRepateInput ){
+  addWeeklyRepate(weeklyRepate:$input){...WeaklyReapateFragment}
+}
+
+mutation updatWeaklyReapate($input:WeeklyRepateInput){
+  updateWeeklyRepate(weeklyRepate:$input){...WeaklyReapateFragment}
+}
+
+mutation deleteWeaklyReapate($input:Long!){
+  deleteWeeklyRepate( id:$input){...WeaklyReapateFragment}
+}
+query getWeaklyReapateById($id :Long!){
+  aWeeklyRepate(where : {id :{eq:$id}})
+    {
+  items{...WeaklyReapateFragment}
+      
+  }
+}

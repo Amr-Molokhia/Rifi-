@@ -1,0 +1,26 @@
+query getReturnSupport($take:Int,$skip:Int){
+ aReturnSupp(take:$take,skip:$skip){
+    totalCount
+   items{...ReturnSupportFragment}
+  }
+}
+
+mutation creatReturnSupp($input:ReturnSuppInput ){
+  addReturnSupp(returnSupp:$input){...ReturnSupportFragment}
+}
+
+mutation updatReturnSupp($input:ReturnSuppInput){
+  updateReturnSupp(returnSupp:$input){...ReturnSupportFragment}
+}
+
+mutation deleteReturnSupp($input:Long!){
+  deleteReturnSupp( id:$input){...ReturnSupportFragment}
+}
+
+query getReturnSupportById($id :Long!){
+  aReturnSupp(where : {id :{eq:$id}})
+    {
+  items{...ReturnSupportFragment}
+      
+  }
+}

@@ -1,0 +1,24 @@
+query getCustomer($take:Int,$skip:Int){
+ aCustomer(take:$take,skip:$skip){
+   
+     totalCount
+   items{...CustomerFragment}
+  }
+}
+mutation creatCustomer($input:CustomerInput ){
+  addCustomer(customer:$input){...CustomerFragment}
+}
+
+mutation updatCustomer($input:CustomerInput){
+  updateCustomer(customer:$input){...CustomerFragment}
+}
+
+mutation deleteCustomer($input:Long!){
+  deleteCustomer( id:$input){...CustomerFragment}
+}
+query getCustomerById($id:Long!){
+    aCustomer(where:{id:{eq:$id}}){
+    items{...CustomerFragment}
+  }
+
+}

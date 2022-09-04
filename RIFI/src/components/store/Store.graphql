@@ -1,0 +1,24 @@
+query getStore($take:Int,$skip:Int){
+ aStore(take:$take,skip:$skip){
+    totalCount
+   items{...StoreFragment}
+  }
+}
+mutation creatStore($input:StoreInput ){
+  addStore(store:$input){...StoreFragment}
+}
+
+mutation updatStore($input:StoreInput){
+  updateStore(store:$input){...StoreFragment}
+}
+
+mutation deleteStore($input:Long!){
+  deleteStore( id:$input){...StoreFragment}
+}
+query getStoreById($id :Long!){
+  aStore(where : {id :{eq:$id}})
+    {
+  items{...StoreFragment}
+      
+  }
+}

@@ -1,0 +1,26 @@
+query getRecGood($take:Int,$skip:Int){
+ aRecGood(take:$take,skip:$skip){
+    totalCount
+   items{...RecGoodFragment}
+  }
+}
+
+mutation creatRecGood($input:RecGoodInput){
+  addRecGood(recGood:$input){...RecGoodFragment}
+}
+
+mutation updateRecGood($input:RecGoodInput){
+  updateRecGood(recGood:$input){...RecGoodFragment}
+}
+
+mutation deleteRecGood($input:Long!){
+  deleteRecGood( id:$input){...RecGoodFragment}
+}
+
+query getRecGoodById($id :Long!){
+  aRecGood(where : {id :{eq:$id}})
+    {
+  items{...RecGoodFragment}
+      
+  }
+}

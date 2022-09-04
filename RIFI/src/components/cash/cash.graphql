@@ -1,0 +1,24 @@
+query getCash($take:Int,$skip:Int){
+ aCashRec(take:$take,skip:$skip){
+   
+     totalCount
+   items{...CashFragment}
+  }
+}
+mutation updateCash($input:CashRecInput){
+  updateCashRec(cashRec:$input){...CashFragment}
+}
+mutation createCash($input:CashRecInput){
+  addCashRec(cashRec:$input){...CashFragment}
+}
+
+mutation deleteCash($input:Long!){
+  deleteCashRec( id:$input){...CashFragment}
+}
+query getCashById($id :Long!){
+  aCashRec(where : {id :{eq:$id}})
+    {
+  items{...CashFragment}
+      
+  }
+}

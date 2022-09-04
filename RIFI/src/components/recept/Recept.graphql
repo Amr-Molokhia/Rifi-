@@ -1,0 +1,27 @@
+query getRecept($take:Int,$skip:Int){
+ aReceipt(take:$take,skip:$skip){
+    totalCount
+   items{...ReceptFragment}
+  }
+}
+
+
+
+mutation creatRecept($input:ReceiptInput ){
+  addReceipt(receipt:$input){...ReceptFragment}
+}
+
+mutation updatRecept($input:ReceiptInput){
+  updateReceipt(receipt:$input){...ReceptFragment}
+}
+
+mutation deleteRecept($input:Long!){
+  deleteReceipt( id:$input){...ReceptFragment}
+}
+query getReceptById($id :Long!){
+  aReceipt(where : {id :{eq:$id}})
+    {
+  items{...ReceptFragment}
+      
+  }
+}

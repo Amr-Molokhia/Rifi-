@@ -1,0 +1,25 @@
+query getProductClass($take:Int,$skip:Int){
+  aProdClass(take:$take,skip:$skip){
+    totalCount
+   items{...ProductClassFragment}
+  }
+}
+
+mutation creatProductClass($input:ProdClassInput ){
+  addProdClass(prodClass:$input){...ProductClassFragment}
+}
+
+mutation updatProductClass($input:ProdClassInput){
+  updateProdClass(prodClass:$input){...ProductClassFragment}
+}
+
+mutation deleteProductClass($input:Long!){
+  deleteProdClass( id:$input){...ProductClassFragment}
+}
+query getProductClassById($id :Int!){
+  aProdClass(where : {id :{eq:$id}})
+    {
+  items{...ProductClassFragment}
+      
+  }
+}

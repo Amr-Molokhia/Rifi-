@@ -1,0 +1,26 @@
+query getSupplier($take:Int,$skip:Int){
+ aSupplier(take:$take,skip:$skip){
+   
+     totalCount
+   items{...SupplierFragment}
+  }
+}
+
+mutation creatSupplier($input:SupplierInput ){
+  addSupplier(supplier:$input){...SupplierFragment}
+}
+
+mutation updatSupplier($input:SupplierInput){
+  updateSupplier(supplier:$input){...SupplierFragment}
+}
+
+mutation deleteSupplier($input:Long!){
+  deleteSupplier( id:$input){...SupplierFragment}
+}
+query getSupplierById($id :Long!){
+  aSupplier(where : {id :{eq:$id}})
+    {
+  items{...SupplierFragment}
+      
+  }
+}
